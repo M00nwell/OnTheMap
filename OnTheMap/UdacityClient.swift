@@ -75,7 +75,7 @@ class UdacityClient : NSObject {
         let loginInfo = [JSONBodyKeys.username: username, JSONBodyKeys.password: password]
         let jsonBody = [JSONBodyKeys.udacity: loginInfo]
         
-        Client.taskForPOSTMethod(session, urlString: urlString, jsonBody: jsonBody){ (JSONResult, error) in
+        Client.taskForPOSTMethod(0, session: session, urlString: urlString, jsonBody: jsonBody){ (JSONResult, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {

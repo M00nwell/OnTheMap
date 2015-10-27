@@ -15,7 +15,8 @@ class LogInViewController: UIViewController {
     
     @IBOutlet weak var warningLabel: UILabel!
     
-    let client = UdacityClient.sharedInstance()
+    let udacityClient = UdacityClient.sharedInstance()
+    let parseClient = ParseClient.sharedInstance()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,13 +44,26 @@ class LogInViewController: UIViewController {
             warningLabel.text = "Please Enter Password"
             return
         }
-        client.creatSession(email, password: password) { (success, errorString) in
+        udacityClient.creatSession(email, password: password) { (success, errorString) in
             if success{
-                self.warningLabel.text = self.client.userID!
             }else{
                 dispatch_async(dispatch_get_main_queue(), {
                 self.warningLabel.text = errorString
                 })
+                return
+            }
+        }
+        parseClient.getStudentLocations(){ (success, errorString) in
+            if success{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.warningLabel.text = "good"
+                })
+                return
+            }else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.warningLabel.text = errorString
+                })
+                return
             }
         }
 

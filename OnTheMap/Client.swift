@@ -12,10 +12,14 @@ class Client : NSObject {
     
     // MARK: GET
     
-    class func taskForGETMethod(session: NSURLSession, urlString: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    class func taskForGETMethod(server: Int, session: NSURLSession, urlString: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         let url = NSURL(string: urlString)!
-        let request = NSURLRequest(URL: url)
+        let request = NSMutableURLRequest(URL: url)
+        if(server == 1){
+            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        }
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
@@ -34,17 +38,20 @@ class Client : NSObject {
                 } else {
                     print("Your request returned an invalid response!")
                 }
+                completionHandler(result: nil, error: nil)
                 return
             }
             
             /* GUARD: Was there any data returned? */
-            guard let data = data else {
+            guard var data = data else {
                 print("No data was returned by the request!")
                 return
             }
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             
-            Client.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            if(server == 0){
+                data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            }
+            Client.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
         }
         
         task.resume()
@@ -54,13 +61,17 @@ class Client : NSObject {
     
     // MARK: POST
     
-    class func taskForPOSTMethod(session: NSURLSession, urlString: String, jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    class func taskForPOSTMethod(server: Int, session: NSURLSession, urlString: String, jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
 
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        if(server == 1){
+            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        }
         do {
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
         }
@@ -87,14 +98,15 @@ class Client : NSObject {
             }
             
             /* GUARD: Was there any data returned? */
-            guard let data = data else {
+            guard var data = data else {
                 print("No data was returned by the request!")
                 return
             }
             
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            
-            Client.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            if(server == 0){
+                data = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            }
+            Client.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
         }
         
         task.resume()
