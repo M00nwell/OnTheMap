@@ -19,6 +19,7 @@ class UdacityClient : NSObject {
     struct Methods {
 
         static let Session = "session"
+        static let User = "users/"
         
     }
     
@@ -26,16 +27,6 @@ class UdacityClient : NSObject {
     struct URLKeys {
         
         static let UserID = "id"
-        
-    }
-    
-    // MARK: Parameter Keys
-    struct ParameterKeys {
-        
-        static let ApiKey = "api_key"
-        static let SessionID = "session_id"
-        static let RequestToken = "request_token"
-        static let Query = "query"
         
     }
     
@@ -54,10 +45,14 @@ class UdacityClient : NSObject {
         // MARK: Authorization
         static let userID = "key"
         static let account = "account"
-        
+        static let user = "user"
+        static let lastName = "last_name"
+        static let firstName = "first_name"
+        static let uniqueKey = "key"
     }
     
     var userID : String? = nil
+    var userInfo = [String:AnyObject]()
     var session: NSURLSession
     
     // MARK: Initializers
@@ -80,7 +75,7 @@ class UdacityClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Login Failed (error).")
+                completionHandler(success: false, errorString: "Login Failed (error session).")
             } else if JSONResult == nil{
                 completionHandler(success: false, errorString: "Login Failed (Incorrect Email or Password).")
             } else {
@@ -97,6 +92,64 @@ class UdacityClient : NSObject {
                     completionHandler(success: false, errorString: "Login Failed (no account).")
                 }
             }
+        }
+    }
+    
+    func getUserData(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        
+        let urlString = Constants.BaseURLSecure + Methods.User + userID!
+        
+        Client.taskForGETMethod(0, session: session, urlString: urlString){ (JSONResult, error) in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandler(success: false, errorString: "Login Failed (error user data).")
+            } else if JSONResult == nil{
+                completionHandler(success: false, errorString: "Login Failed (cannot get user data).")
+            } else {
+                if let userInfo = JSONResult[JSONResponseKeys.user] as? [String:AnyObject] {
+                    self.userInfo = userInfo
+                    completionHandler(success: true, errorString: nil)
+                } else {
+                    completionHandler(success: false, errorString: "Login Failed (no users).")
+                }
+            }
+        }
+    }
+    
+    func deleteSession(){
+        let urlString = Constants.BaseURLSecure + Methods.Session
+        Client.taskForDELETEMethod(session, urlString: urlString){ (JSONResult, error) in
+            if let error = error {
+                print(error)
+                //try again
+                self.deleteSession()
+            } 
+        }
+    }
+    
+    func getLastName() -> String{
+        if let lastName = userInfo[JSONResponseKeys.lastName] as? String{
+            return lastName
+        }else{
+            return ""
+        }
+    }
+    
+    func getFirstName() -> String{
+        if let lastName = userInfo[JSONResponseKeys.firstName] as? String{
+            return lastName
+        }else{
+            return ""
+        }
+    }
+    
+    func getUniqueKey() -> String{
+        if let lastName = userInfo[JSONResponseKeys.uniqueKey] as? String{
+            return lastName
+        }else{
+            return ""
         }
     }
         

@@ -21,6 +21,7 @@ class LogInViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         warningLabel.text = ""
+        passwordTextField.text = ""
     }
     
     override func viewDidLoad() {
@@ -46,6 +47,7 @@ class LogInViewController: UIViewController {
         }
         udacityClient.creatSession(email, password: password) { (success, errorString) in
             if success{
+                self.getUserInfo()
             }else{
                 dispatch_async(dispatch_get_main_queue(), {
                 self.warningLabel.text = errorString
@@ -53,10 +55,27 @@ class LogInViewController: UIViewController {
                 return
             }
         }
+    }
+    
+    func getUserInfo(){
+        udacityClient.getUserData(){ (success, errorString) in
+            if success{
+                self.getStudentLocation()
+            }else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.warningLabel.text = errorString
+                })
+                return
+            }
+        }
+    }
+    
+    func getStudentLocation(){
         parseClient.getStudentLocations(){ (success, errorString) in
             if success{
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = "good"
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ManagerNavigationController") as! UINavigationController
+                    self.presentViewController(controller, animated: true, completion: nil)
                 })
                 return
             }else{
@@ -66,8 +85,6 @@ class LogInViewController: UIViewController {
                 return
             }
         }
-
-
     }
 
     @IBAction func signupButtonTouch(sender: UIButton) {
