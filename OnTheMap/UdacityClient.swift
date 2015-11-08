@@ -77,8 +77,9 @@ class UdacityClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Login Failed (Bad Connection).")
+                completionHandler(success: false, errorString: "Bad Internet Connection.")
             } else if JSONResult == nil{
+                print("Login Failed (Incorrect Email or Password)")
                 completionHandler(success: false, errorString: "Login Failed (Incorrect Email or Password).")
             } else {
                 if let account = JSONResult[JSONResponseKeys.account] as? [String:AnyObject] {
@@ -87,11 +88,13 @@ class UdacityClient : NSObject {
                         self.userID = userID
                         completionHandler(success: true, errorString: nil)
                     }else{
-                        completionHandler(success: false, errorString: "Login Failed (no ID).")
+                        print("Login Failed (no ID)")
+                        completionHandler(success: false, errorString: "Login Failed.")
                     }
 
                 } else {
-                    completionHandler(success: false, errorString: "Login Failed (no account).")
+                    print("Login Failed (no account)")
+                    completionHandler(success: false, errorString: "Login Failed.")
                 }
             }
         }
@@ -108,9 +111,10 @@ class UdacityClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Login Failed with Facebook(Bad Connection).")
+                completionHandler(success: false, errorString: "Bad Internet Connection.")
             } else if JSONResult == nil{
-                completionHandler(success: false, errorString: "Login Failed with Facebook.")
+                print("Login with Facebook Failed")
+                completionHandler(success: false, errorString: "Login with Facebook Failed.")
             } else {
                 if let account = JSONResult[JSONResponseKeys.account] as? [String:AnyObject] {
                     if let userID
@@ -118,11 +122,13 @@ class UdacityClient : NSObject {
                             self.userID = userID
                             completionHandler(success: true, errorString: nil)
                     }else{
-                        completionHandler(success: false, errorString: "Login Failed (no ID).")
+                        print("Login Failed (no ID)")
+                        completionHandler(success: false, errorString: "Login with Facebook Failed.")
                     }
                     
                 } else {
-                    completionHandler(success: false, errorString: "Login Failed (no account).")
+                    print("Login Failed (no account)")
+                    completionHandler(success: false, errorString: "Login with Facebook Failed.")
                 }
             }
         }
@@ -138,7 +144,7 @@ class UdacityClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Login Failed (error user data).")
+                completionHandler(success: false, errorString: "Bad Internet Connection.")
             } else if JSONResult == nil{
                 completionHandler(success: false, errorString: "Login Failed (cannot get user data).")
             } else {
@@ -146,7 +152,8 @@ class UdacityClient : NSObject {
                     self.userInfo = userInfo
                     completionHandler(success: true, errorString: nil)
                 } else {
-                    completionHandler(success: false, errorString: "Login Failed (no users).")
+                    print("Login Failed (no user)")
+                    completionHandler(success: false, errorString: "Login Failed (cannot get user data).")
                 }
             }
         }

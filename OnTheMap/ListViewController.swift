@@ -12,7 +12,7 @@ import UIKit
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var locations:[StudentInfo] = [StudentInfo]()
+    let parse = ParseClient.sharedInstance()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,7 +26,6 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        locations = ParseClient.sharedInstance().students
         self.parentViewController!.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshButtonTouchUp")
     }
     
@@ -36,13 +35,10 @@ class ListViewController: UIViewController {
             if success{
                 dispatch_async(dispatch_get_main_queue(), {
                     ActivityIndicatorView.shared.hideProgressView()
-                    self.locations = ParseClient.sharedInstance().students
                     self.tableView.reloadData()
                 })
             } else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
             }
         }
     }
@@ -54,7 +50,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         /* Get cell type */
         let cellReuseIdentifier = "TableViewCell"
-        let location = locations[indexPath.row]
+        let location = parse.students[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
@@ -64,12 +60,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return parse.students.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let app = UIApplication.sharedApplication()
-        let toOpen = locations[indexPath.row].mediaURL
+        let toOpen = parse.students[indexPath.row].mediaURL
         if toOpen != "" {
             app.openURL(NSURL(string: toOpen)!)
         }

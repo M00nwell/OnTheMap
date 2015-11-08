@@ -13,13 +13,14 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    var locations: [StudentInfo] = [StudentInfo]()
+    let parse = ParseClient.sharedInstance()
+    let udacity = UdacityClient.sharedInstance()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if ParseClient.sharedInstance().mapNeedReload {
+        if parse.mapNeedReload {
             refreshButtonTouchUp()
-            ParseClient.sharedInstance().mapNeedReload = false
+            parse.mapNeedReload = false
         }
     }
     
@@ -34,7 +35,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func logoutButtonTouchUp() {
-        UdacityClient.sharedInstance().deleteSession()
+        udacity.deleteSession()
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -42,16 +43,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func refreshButtonTouchUp() {
         ActivityIndicatorView.shared.showProgressView(view)
-        ParseClient.sharedInstance().getStudentLocations() { (success, errorString) in
+        parse.getStudentLocations() { (success, errorString) in
             if success{
                 dispatch_async(dispatch_get_main_queue(), {
                     ActivityIndicatorView.shared.hideProgressView()
                     self.loadMapView()
                 })
             } else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
             }
         }
     }
@@ -62,10 +61,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func loadMapView(){
-        locations = ParseClient.sharedInstance().students
         var annotations = [MKPointAnnotation]()
         
-        for location in locations {
+        for location in parse.students {
             
             let lat = CLLocationDegrees(location.latitude)
             let long = CLLocationDegrees(location.longitude)

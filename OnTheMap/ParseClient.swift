@@ -55,16 +55,18 @@ class ParseClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Get Student Locations Failed (error).")
+                completionHandler(success: false, errorString: "Bad Internet Connection.")
             } else if JSONResult == nil{
-                completionHandler(success: false, errorString: "Get Student Locations Failed (status code invalid).")
+                print("Get Student Locations Failed (status code invalid)")
+                completionHandler(success: false, errorString: "Get Student Locations Failed")
             } else {
                 if let results = JSONResult[JSONResponseKeys.results] as? [[String:AnyObject]] {
                     self.students = StudentInfo.studentFromResults(results)
                     print(results.count)
                     completionHandler(success: true, errorString: nil)
                 } else {
-                    completionHandler(success: false, errorString: "Get Student Locations Failed (no results).")
+                    print("Get Student Locations Failed (no result)")
+                    completionHandler(success: false, errorString: "Get Student Locations Failed.")
                 }
             }
         }
@@ -79,16 +81,18 @@ class ParseClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, count: 0, errorString: "Query Locations Failed (error).")
+                completionHandler(success: false, count: 0, errorString: "Bad Internet Connection.")
             } else if JSONResult == nil{
-                completionHandler(success: false, count: 0, errorString: "Query Location Failed (status code invalid).")
+                print("Query Location Failed (status code invalid)")
+                completionHandler(success: false, count: 0, errorString: "Query Location Failed.")
             } else {
                 if let results = JSONResult[JSONResponseKeys.results] as? [[String:AnyObject]] {
                     self.userPin = StudentInfo.studentFromResults(results)[0]
                     print(results)
                     completionHandler(success: true, count: results.count, errorString: nil)
                 } else {
-                    completionHandler(success: false, count: 0, errorString: "Query Location Failed (status code invalid).")
+                    print("Query Location Failed (no result)")
+                    completionHandler(success: false, count: 0, errorString: "Query Location Failed.")
                 }
             }
         }
@@ -110,15 +114,17 @@ class ParseClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Add Locations Failed (error).")
+                completionHandler(success: false, errorString: "Bad Internet Connection.")
             } else if JSONResult == nil{
-                completionHandler(success: false, errorString: "Add Locations Failed (status code invalid).")
+                print("Add Locations Failed (status code invalid)")
+                completionHandler(success: false, errorString: "Add Locations Failed.")
             } else {
                 if let objectID = JSONResult[JSONResponseKeys.objectId] as? String {
                     print(objectID)
                     completionHandler(success: true, errorString: nil)
                 } else {
-                    completionHandler(success: false, errorString: "Add Locations Failed (no objectID).")
+                    print("Add Locations Failed (no objectID)")
+                    completionHandler(success: false, errorString: "Add Locations Failed.")
                 }
             }
         }
@@ -140,15 +146,17 @@ class ParseClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Replace Locations Failed (error).")
+                completionHandler(success: false, errorString: "Bad Internet Connection.")
             } else if JSONResult == nil{
-                completionHandler(success: false, errorString: "Replace Locations Failed (status code invalid).")
+                print("Replace Locations Failed (status code invalid)")
+                completionHandler(success: false, errorString: "Replace Locations Failed.")
             } else {
                 if let updateAt = JSONResult[JSONResponseKeys.updatedAt] as? String {
                     print(updateAt)
                     completionHandler(success: true, errorString: nil)
                 } else {
-                    completionHandler(success: false, errorString: "Replace Locations Failed (no objectID).")
+                    print("Replace Locations Failed (no objectID)")
+                    completionHandler(success: false, errorString: "Replace Locations Failed.")
                 }
             }
         }

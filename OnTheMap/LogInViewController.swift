@@ -33,7 +33,9 @@ class LogInViewController: UIViewController{
         loginView.center.y = CGFloat(500)
         loginView.readPermissions = ["public_profile", "email", "user_friends"]
         loginView.delegate = self
-        self.view.addSubview(loginView)
+        view.addSubview(loginView)
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,12 +64,7 @@ class LogInViewController: UIViewController{
             if success{
                 self.getUserInfo()
             }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.shakeWarning(self.emailTextField)
-                    self.shakeWarning(self.passwordTextField)
-                    self.warningLabel.text = errorString
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
                 return
             }
         }
@@ -78,10 +75,7 @@ class LogInViewController: UIViewController{
             if success{
                 self.getStudentLocation()
             }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = errorString
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
                 return
             }
         }
@@ -97,10 +91,7 @@ class LogInViewController: UIViewController{
                 })
                 return
             }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = errorString
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
                 return
             }
         }
@@ -139,10 +130,7 @@ extension LogInViewController: FBSDKLoginButtonDelegate{
                     if success{
                         self.getUserInfo()
                     }else{
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.warningLabel.text = errorString
-                            ActivityIndicatorView.shared.hideProgressView()
-                        })
+                        LogInViewController.showAlert(errorString!, vc: self)
                         return
                     }
                 }
@@ -153,5 +141,24 @@ extension LogInViewController: FBSDKLoginButtonDelegate{
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
     }
+    
+    class func showAlert(text: String, vc: UIViewController){
+        let alert = UIAlertController(title: "Alert", message: text, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            ActivityIndicatorView.shared.hideProgressView()
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            vc.presentViewController(alert, animated: true, completion: nil)
+        })
+    }
 }
 
+extension LogInViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}

@@ -90,23 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LogInViewController.swift"
-            timestampString = "468658627.641375"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "loginButtonTouch(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OnTheMap/LogInViewController.swift"
-            timestampString = "468658627.641375"
+            timestampString = "468685501.896036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -122,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LogInViewController.swift"
-            timestampString = "468658627.641375"
+            timestampString = "468685501.896036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "loginButtonTouch(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LogInViewController.swift"
-            timestampString = "468658627.641375"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "loginButtonTouch(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +138,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LogInViewController.swift"
-            timestampString = "468658627.641375"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "loginButtonTouch(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMap/LogInViewController.swift"
+            timestampString = "468688082.825714"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "loginButtonTouch(_:)"
             landmarkType = "5">
             <Locations>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468657430.547189"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "mapView(_:annotationView:calloutAccessoryControlTapped:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468657430.547189"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "mapView(_:viewForAnnotation:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468657430.547189"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "mapView(_:viewForAnnotation:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468657430.547189"
+            timestampString = "468685096.187911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "logoutButtonTouchUp()"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468657430.547189"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "mapView(_:annotationView:calloutAccessoryControlTapped:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/ListViewController.swift"
-            timestampString = "468569910.240942"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/AddPinViewController.swift"
-            timestampString = "468428434.028363"
+            timestampString = "468685501.896036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "findPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/AddPinViewController.swift"
-            timestampString = "468428434.028363"
+            timestampString = "468685501.896036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "findPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/AddPinViewController.swift"
-            timestampString = "468428434.028363"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "submitPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/AddPinViewController.swift"
-            timestampString = "468428434.028363"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "submitPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/AddPinViewController.swift"
-            timestampString = "468660132.959439"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "addLocation()"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/ListViewController.swift"
-            timestampString = "468569910.240942"
+            timestampString = "468685096.187911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "refreshButtonTouchUp()"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468657430.547189"
+            timestampString = "468685096.187911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "refreshButtonTouchUp()"
             landmarkType = "5">
          </BreakpointContent>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468569910.240942"
+            timestampString = "468685096.187911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468569416.204064"
+            timestampString = "468685096.187911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "468657430.547189"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "addButtonTouchUp()"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/ListViewController.swift"
-            timestampString = "468569998.609266"
+            timestampString = "468685096.187911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "refreshButtonTouchUp()"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LogInViewController.swift"
-            timestampString = "468658627.641375"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "loginButton(_:didCompleteWithResult:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -650,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LogInViewController.swift"
-            timestampString = "468658627.641375"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "shakeWarning(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -666,12 +666,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/AddPinViewController.swift"
-            timestampString = "468659245.934792"
+            timestampString = "468688082.825714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "submitPressed(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMap/AddPinViewController.swift"
+            timestampString = "468685501.896036"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMap/AddPinViewController.swift"
+            timestampString = "468688573.354138"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "submitPressed(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMap/ParseClient.swift"
+            timestampString = "468688586.300798"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "queryStudentLocation(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

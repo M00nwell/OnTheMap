@@ -39,6 +39,8 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        locationTextField.delegate = self
+        linkTextField.delegate = self
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelPressed")
     }
     
@@ -56,8 +58,7 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
             if let error = error {
                 print(error)
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = "Failed to Locate on the Map"
-                    ActivityIndicatorView.shared.hideProgressView()
+                    LogInViewController.showAlert("Failed to Locate on the Map", vc: self)
                 })
                 return
             }else {
@@ -95,10 +96,7 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
                     })
                 }
             }else {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = errorString
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
             }
         }
     }
@@ -133,21 +131,15 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
                         self.mapView.addAnnotation(annotation)
                     })
                 }else{
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.warningLabel.text = "Failed to Locate on the Map"
-                    })
+                    LogInViewController.showAlert("Failed to Locate on the Map", vc: self)
                     return
                 }
             }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = "Failed to Locate on the Map"
-                })
+                LogInViewController.showAlert("Failed to Locate on the Map", vc: self)
                 return
             }
         }else{
-            dispatch_async(dispatch_get_main_queue(), {
-                self.warningLabel.text = "Failed to Locate on the Map"
-            })
+            LogInViewController.showAlert("Failed to Locate on the Map", vc: self)
             return
         }
     }
@@ -162,10 +154,7 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
                     self.parse.listNeedReload = true
                 })
             }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = errorString
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
             }
         }
     }
@@ -180,12 +169,16 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
                     self.parse.listNeedReload = true
                 })
             }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.warningLabel.text = errorString
-                    ActivityIndicatorView.shared.hideProgressView()
-                })
+                LogInViewController.showAlert(errorString!, vc: self)
             }
         }
     }
     
+}
+
+extension AddPinViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
