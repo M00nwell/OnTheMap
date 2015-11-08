@@ -21,6 +21,9 @@
 		4605FE3C1BDCE57600972A30 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605FE3B1BDCE57600972A30 /* Client.swift */; settings = {ASSET_TAGS = (); }; };
 		4605FE3E1BDFBE2500972A30 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605FE3D1BDFBE2500972A30 /* ParseClient.swift */; settings = {ASSET_TAGS = (); }; };
 		4605FE401BDFBEEC00972A30 /* StudentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605FE3F1BDFBEEC00972A30 /* StudentInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		4605FE421BEB90AD00972A30 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605FE411BEB90AD00972A30 /* ActivityIndicatorView.swift */; settings = {ASSET_TAGS = (); }; };
+		4605FE4C1BEDE90A00972A30 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4605FE4B1BEDE90A00972A30 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
+		46D7D8BA1BEE41FF009782C0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D7D8B91BEE41FF009782C0 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,10 @@
 		4605FE3B1BDCE57600972A30 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		4605FE3D1BDFBE2500972A30 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		4605FE3F1BDFBEEC00972A30 /* StudentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInfo.swift; sourceTree = "<group>"; };
+		4605FE411BEB90AD00972A30 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		4605FE461BEDE3A100972A30 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		4605FE4B1BEDE90A00972A30 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		46D7D8B91BEE41FF009782C0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D7D8BA1BEE41FF009782C0 /* FBSDKLoginKit.framework in Frameworks */,
+				4605FE4C1BEDE90A00972A30 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +120,7 @@
 		4605FE041BDB8C3E00972A30 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				4605FE431BEDDE0D00972A30 /* Frameworks */,
 				4605FE051BDB8C3E00972A30 /* AppDelegate.swift */,
 				4605FE3F1BDFBEEC00972A30 /* StudentInfo.swift */,
 				4605FE3B1BDCE57600972A30 /* Client.swift */,
@@ -120,10 +130,12 @@
 				4605FE331BDCB91D00972A30 /* MapViewController.swift */,
 				4605FE351BDCBAB500972A30 /* ListViewController.swift */,
 				4605FE371BDCBACC00972A30 /* AddPinViewController.swift */,
+				4605FE411BEB90AD00972A30 /* ActivityIndicatorView.swift */,
 				4605FE091BDB8C3E00972A30 /* Main.storyboard */,
 				4605FE0C1BDB8C3E00972A30 /* Assets.xcassets */,
 				4605FE0E1BDB8C3E00972A30 /* LaunchScreen.storyboard */,
 				4605FE111BDB8C3E00972A30 /* Info.plist */,
+				4605FE461BEDE3A100972A30 /* Bridging-Header.h */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -144,6 +156,15 @@
 				4605FE271BDB8C3E00972A30 /* Info.plist */,
 			);
 			path = OnTheMapUITests;
+			sourceTree = "<group>";
+		};
+		4605FE431BEDDE0D00972A30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46D7D8B91BEE41FF009782C0 /* FBSDKLoginKit.framework */,
+				4605FE4B1BEDE90A00972A30 /* FBSDKCoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4605FE401BDFBEEC00972A30 /* StudentInfo.swift in Sources */,
+				4605FE421BEB90AD00972A30 /* ActivityIndicatorView.swift in Sources */,
 				4605FE081BDB8C3E00972A30 /* LogInViewController.swift in Sources */,
 				4605FE3C1BDCE57600972A30 /* Client.swift in Sources */,
 				4605FE381BDCBACC00972A30 /* AddPinViewController.swift in Sources */,
@@ -424,10 +446,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OnTheMap",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wenzhe.fu.OnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnTheMap/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -435,10 +462,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OnTheMap",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wenzhe.fu.OnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnTheMap/Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -509,6 +541,7 @@
 				4605FE2C1BDB8C3E00972A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4605FE2D1BDB8C3E00972A30 /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +550,7 @@
 				4605FE2F1BDB8C3E00972A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4605FE301BDB8C3E00972A30 /* Build configuration list for PBXNativeTarget "OnTheMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +559,7 @@
 				4605FE321BDB8C3E00972A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

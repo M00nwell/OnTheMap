@@ -35,6 +35,8 @@ class ParseClient : NSObject {
     var session: NSURLSession
     var students: [StudentInfo] = [StudentInfo]()
     var userPin: StudentInfo? = nil
+    var mapNeedReload = false
+    var listNeedReload = false
     
     // MARK: Initializers
     let udacity = UdacityClient.sharedInstance()

@@ -36,6 +36,8 @@ class UdacityClient : NSObject {
         static let username = "username"
         static let password = "password"
         static let udacity = "udacity"
+        static let FB = "facebook_mobile"
+        static let token = "access_token"
         
     }
     
@@ -75,7 +77,7 @@ class UdacityClient : NSObject {
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 print(error)
-                completionHandler(success: false, errorString: "Login Failed (error session).")
+                completionHandler(success: false, errorString: "Login Failed (Bad Connection).")
             } else if JSONResult == nil{
                 completionHandler(success: false, errorString: "Login Failed (Incorrect Email or Password).")
             } else {
@@ -94,6 +96,38 @@ class UdacityClient : NSObject {
             }
         }
     }
+    
+    func creatSessionWithFB(FBToken: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
+        
+        let urlString = Constants.BaseURLSecure + Methods.Session
+        let loginInfo = [JSONBodyKeys.token: FBToken]
+        let jsonBody = [JSONBodyKeys.FB: loginInfo]
+        
+        Client.taskForPOSTMethod(0, session: session, urlString: urlString, jsonBody: jsonBody){ (JSONResult, error) in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandler(success: false, errorString: "Login Failed with Facebook(Bad Connection).")
+            } else if JSONResult == nil{
+                completionHandler(success: false, errorString: "Login Failed with Facebook.")
+            } else {
+                if let account = JSONResult[JSONResponseKeys.account] as? [String:AnyObject] {
+                    if let userID
+                        = account[JSONResponseKeys.userID] as? String {
+                            self.userID = userID
+                            completionHandler(success: true, errorString: nil)
+                    }else{
+                        completionHandler(success: false, errorString: "Login Failed (no ID).")
+                    }
+                    
+                } else {
+                    completionHandler(success: false, errorString: "Login Failed (no account).")
+                }
+            }
+        }
+    }
+
     
     func getUserData(completionHandler: (success: Bool, errorString: String?) -> Void) {
         

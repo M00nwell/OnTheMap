@@ -14,11 +14,37 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var locations:[StudentInfo] = [StudentInfo]()
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if ParseClient.sharedInstance().listNeedReload {
+            refreshButtonTouchUp()
+            ParseClient.sharedInstance().listNeedReload = false
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         locations = ParseClient.sharedInstance().students
+        self.parentViewController!.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshButtonTouchUp")
+    }
+    
+    func refreshButtonTouchUp() {
+        ActivityIndicatorView.shared.showProgressView(view)
+        ParseClient.sharedInstance().getStudentLocations() { (success, errorString) in
+            if success{
+                dispatch_async(dispatch_get_main_queue(), {
+                    ActivityIndicatorView.shared.hideProgressView()
+                    self.locations = ParseClient.sharedInstance().students
+                    self.tableView.reloadData()
+                })
+            } else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    ActivityIndicatorView.shared.hideProgressView()
+                })
+            }
+        }
     }
 }
 

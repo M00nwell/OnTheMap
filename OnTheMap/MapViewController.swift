@@ -17,17 +17,56 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if ParseClient.sharedInstance().mapNeedReload {
+            refreshButtonTouchUp()
+            ParseClient.sharedInstance().mapNeedReload = false
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mapView.delegate = self
+        loadMapView()
+        /* Create and set the top buttons */
+        self.parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: "logoutButtonTouchUp")
+        self.parentViewController!.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshButtonTouchUp")]
+        self.parentViewController!.navigationItem.rightBarButtonItems!.append(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonTouchUp"))
+    }
+    
+    func logoutButtonTouchUp() {
+        UdacityClient.sharedInstance().deleteSession()
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func refreshButtonTouchUp() {
+        ActivityIndicatorView.shared.showProgressView(view)
+        ParseClient.sharedInstance().getStudentLocations() { (success, errorString) in
+            if success{
+                dispatch_async(dispatch_get_main_queue(), {
+                    ActivityIndicatorView.shared.hideProgressView()
+                    self.loadMapView()
+                })
+            } else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    ActivityIndicatorView.shared.hideProgressView()
+                })
+            }
+        }
+    }
+    
+    func addButtonTouchUp(){
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("AddPinViewController") as! AddPinViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func loadMapView(){
         locations = ParseClient.sharedInstance().students
         var annotations = [MKPointAnnotation]()
-        mapView.delegate = self
         
         for location in locations {
-
+            
             let lat = CLLocationDegrees(location.latitude)
             let long = CLLocationDegrees(location.longitude)
             
@@ -45,35 +84,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         // When the array is complete, we add the annotations to the map.
-        self.mapView.addAnnotations(annotations)
-        
-        /* Create and set the top buttons */
-        self.parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: "logoutButtonTouchUp")
-        self.parentViewController!.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "refreshButtonTouchUp")]
-        self.parentViewController!.navigationItem.rightBarButtonItems!.append(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonTouchUp"))
-    }
-    
-    func logoutButtonTouchUp() {
-        UdacityClient.sharedInstance().deleteSession()
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func refreshButtonTouchUp() {
-        ParseClient.sharedInstance().getStudentLocations() { (success, errorString) in
-            if success{
-                dispatch_async(dispatch_get_main_queue(), {
-                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ManagerNavigationController") as! UINavigationController
-                    self.presentViewController(controller, animated: true, completion: nil)
-                })
-            }
-        }
-        //locations = ParseClient.sharedInstance().students
-        
-    }
-    
-    func addButtonTouchUp(){
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("AddPinViewController") as! AddPinViewController
-        self.navigationController?.pushViewController(controller, animated: true)
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(annotations)
     }
     
     // MARK: - MKMapViewDelegate

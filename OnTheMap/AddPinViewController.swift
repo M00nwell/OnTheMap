@@ -46,19 +46,23 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
         if locationTextField.text == "" {
             warningLabel.text = "Location Empty"
             return
-        }else{
-            let address = locationTextField.text!
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(address) {(placemarks, error) in
-                if let error = error {
-                    print(error)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.warningLabel.text = "Failed to Locate on the Map"
-                    })
-                    return
-                }else {
-                    self.findOnMap(placemarks)
-                }
+        }
+        
+        ActivityIndicatorView.shared.showProgressView(view)
+        
+        let address = locationTextField.text!
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) {(placemarks, error) in
+            if let error = error {
+                print(error)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.warningLabel.text = "Failed to Locate on the Map"
+                    ActivityIndicatorView.shared.hideProgressView()
+                })
+                return
+            }else {
+                self.findOnMap(placemarks)
+                ActivityIndicatorView.shared.hideProgressView()
             }
         }
         
@@ -68,6 +72,9 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
             warningLabel.text = "Link Empty"
             return
         }
+        
+        ActivityIndicatorView.shared.showProgressView(view)
+        
         parse.queryStudentLocation() { (success, count, errorString) in
             if success {
                 if count == 0 { //first submit
@@ -81,6 +88,7 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
                     
                     alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
                         alert.dismissViewControllerAnimated(true, completion: nil)
+                        ActivityIndicatorView.shared.hideProgressView()
                     }))
                     dispatch_async(dispatch_get_main_queue(), {
                         self.presentViewController(alert, animated: true, completion: nil)
@@ -89,6 +97,7 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
             }else {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.warningLabel.text = errorString
+                    ActivityIndicatorView.shared.hideProgressView()
                 })
             }
         }
@@ -113,11 +122,13 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
                         self.mapView.hidden = false
                         self.linkTextField.hidden = false
                         self.submitButton.hidden = false
+                        self.view.bringSubviewToFront(self.submitButton)
+                        //self.submitButton.userInteractionEnabled = true
                         self.topLabel.hidden = true
                         self.locationTextField.hidden = true
                         self.locateButton.hidden = true
-                        self.warningLabel.frame.origin.y = 177
                         self.warningLabel.text = ""
+                        self.warningLabel.layer.zPosition = CGFloat(1)
                         self.mapView.setRegion(region, animated: true)
                         self.mapView.addAnnotation(annotation)
                     })
@@ -145,11 +156,15 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
         parse.addStudentLocation(locationTextField.text!, mediaUrl: linkTextField.text!, latitude: locationCoordinate.latitude, Longitude: locationCoordinate.longitude) { (success, errorString) in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
+                    ActivityIndicatorView.shared.hideProgressView()
                     self.navigationController?.popViewControllerAnimated(false)
+                    self.parse.mapNeedReload = true
+                    self.parse.listNeedReload = true
                 })
             }else{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.warningLabel.text = errorString
+                    ActivityIndicatorView.shared.hideProgressView()
                 })
             }
         }
@@ -159,11 +174,15 @@ class AddPinViewController: UIViewController, MKMapViewDelegate {
         parse.replaceStudentLocation(locationTextField.text!, mediaUrl: linkTextField.text!, latitude: locationCoordinate.latitude, Longitude: locationCoordinate.longitude) { (success, errorString) in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
+                    ActivityIndicatorView.shared.hideProgressView()
                     self.navigationController?.popViewControllerAnimated(false)
+                    self.parse.mapNeedReload = true
+                    self.parse.listNeedReload = true
                 })
             }else{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.warningLabel.text = errorString
+                    ActivityIndicatorView.shared.hideProgressView()
                 })
             }
         }
