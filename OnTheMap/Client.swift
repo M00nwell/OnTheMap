@@ -26,6 +26,7 @@ class Client : NSObject {
             /* GUARD: Was there an error? */
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
+                completionHandler(result: nil, error: error)
                 return
             }
             
@@ -163,6 +164,7 @@ class Client : NSObject {
     }
     
     class func taskForDELETEMethod(session: NSURLSession, urlString: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void){
+        
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "DELETE"
